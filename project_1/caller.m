@@ -42,10 +42,16 @@ ratio = e5/50
 
 e500 = y(end) - y500(end)
 e5000 = y(end) - y5000(end)
+
 ratio5 = e5/e5
 ratio50 = e5/e50
 ratio500 = e5/e500
 ratio5000 = e5/e5000
+
+y5(end)
+y50(end)
+y500(end)
+y5000(end)
 
 % TODO: 1b, 1c, formatting & writeup
 
