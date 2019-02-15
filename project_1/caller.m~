@@ -22,6 +22,7 @@ end
 [t50,y50] = euler(f,[0,.5],3,50);
 t = linspace(0,.5,100); y = 3*exp(2*t);
 % evaluate the exact solution
+figure
 plot(t5,y5,'ro-',t50,y50,'bx-',t,y,'k-'); axis tight;
 legend('Euler N = 5','Euler N = 50','Exact');f
 
@@ -42,6 +43,21 @@ ratio5000 = e5/e5000
 
 % TODO: 1b, 1c, formatting & writeup
 
-t = 0:.45:10; y = -30:6
+% Problem 2
 
- 
+t = 0:.45:10; y = -30:6:42;
+[T, Y] = meshgrid(t, y);
+dT = ones(size(T));
+dY = -2*Y;
+quiver(T,Y,dT,dY)
+axis tight
+hold on
+
+%%
+% 
+% 
+% \begin{tabular}{l c c c}
+% N & approximation & error & ratio \\
+% \end{tablular}
+
+%%

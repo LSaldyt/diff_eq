@@ -1,3 +1,9 @@
+%%
+% 
+%  Lucas Saldyt (1213399809)
+% 
+
+
 clear t y
 y(1) = 3;
 t(1) = 0;
@@ -53,5 +59,9 @@ quiver(T,Y,dT,dY)
 axis tight
 hold on
 
-% 
- 
+%%
+% \begin{tabular}{l c c c}
+% N & approximation & error & ratio \\
+% \end{tablular}
+%%
+x = 2;
