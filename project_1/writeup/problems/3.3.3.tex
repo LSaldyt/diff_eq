@@ -1,0 +1,24 @@
+\problem{Induction 4}
+
+Prove that every reducible polynomial can be written as a product of irreducible polynomials.
+(\emph{Hint}: Proceed by complete induction on the degree of the polynomial)
+
+\solution
+
+\part 
+
+\begin{theorem}
+Every reducible polynomial can be written as a product of irreducible polynomials.
+\end{theorem}
+
+\begin{proof}
+Proceeding by complete induction, it is first shown that a single reducible polynomial can be written as a product of irreducible polynomials. 
+For instance, consider $x^2 + 2x + 1$, which reduces to $(x + 1)*(x + 1)$. 
+Assume the induction hypothesis: that for some $n$, any reducible polynomial of degree $k < n$ can be factored into a product of irreducible polynomials (of degree $n' < k$).
+Then assume $p$ is reducible and has degree $n + 1$. 
+So, $p = qr$, and the degrees of $q$ and $r$ sum to $n + 1$.
+Each $q$ and $r$ will be called sub-polynomials and are either be irreducible or reducible.
+If a sub-polynomial of degree $m$ is reducible, then by definition it can be broken into two separate polynomials whose degrees sum to $m$, as in the induction hypothesis.
+Lastly, all polynomials of degree zero are irreducible, and some polynomials of higher degree are also irreducible (such as the "polynomial" $x$).
+Since the induction hypothesis requires a reduction in degree, it is shown recursively, by induction, that any reducible polynomial will be expressed as a product of irreducible polynomials.
+\end{proof}
