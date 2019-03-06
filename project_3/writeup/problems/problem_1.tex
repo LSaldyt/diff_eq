@@ -1,59 +1,45 @@
-\problem{Initial Value Problem}
+\problem{Mass-Spring System}
 
-
-\solution
-
-\part 
-
-
-The following matlab code is used to solve exercise 1:
-
+This homework investigates spring equations using the following code:
 \begin{verbatim}
-function LAB04ex1
-t0 = 0; tf = 40; y0 = [10;60];
-[t,Y] = ode45(@dYdt,[t0,tf],y0) %,[])%,a,b,c,d);
+function LAB05ex1
+m = 1;
+% mass [kg]
+k = 4;
+% spring constant [N/m]
+omega0 = sqrt(k/m);
+y0 = 0.1; v0 = 0;
+% initial conditions
+[t,Y] = ode45(@f,[0,10],[y0,v0],[],omega0); % solve for 0<t<10
 y = Y(:,1); v = Y(:,2);
-figure(1);
-plot(t, y, 'b-+'); ylabel('y'); legend('y(t)');
-hold on
-plot(t, v, 'ro-'); ylabel('v'); legend('v(t) = y''(t)');
-hold off
-xlabel('t');
-ylim([-1.5, 1.5]);
+% retrieve y, v from Y
+figure(1); plot(t,y,'b+-',t,v,'ro-');
+% time series for y and v
 grid on;
-figure(2);
-plot(y, v); axis square; xlabel('y'); ylabel('v'); % plot the phase plot
-ylim([-1.5, 1.5]);
-xlim([-1, 1]);
-grid on;
-
-function dYdt = f(t, Y) % f(t,Y,a,b,c,d)
-y = Y(1); v = Y(2)
-dYdt = [v; cos(t) - 4*v - 3*y];
+% Legend!
+legend('y(t)', 'v(t)');
+%-----------------------------------------
+function dYdt = f(t,Y,omega0)
+y = Y(1); v = Y(2);
+dYdt = [ v ; -omega0^2*y ];
 \end{verbatim}
 
-The code simply integrates the equation and plots the resulting functions and their phase diagram. 
-This shows two oscillating functions offset from one another, and a stable equilibrium which is reached after a certain amount of time. A legend and grid lines are shown. Each figure is intentionally given a full page so that detail can be shown.
+\includegraphics[width=4in, scale=0.4]{0.png}
 
-\includegraphics{00} \\
-\includegraphics{01}
+\solution
+\begin{itemize}
 
+\item (a) Which curve represents $y = y(t)$? How do you know? \\ 
+    The blue curve represents $y = y(t)$. This is because it starts at $y0 = 0.1$, while $v$ (the red curve) starts at $0$.
+\item (b) What is the period of the motion? Answer this question first graphically (by reading the period from the graph) and then analytically (by finding the period using $\omega_0$). \\
+    Visually, the period appears to be $\pi$. This can be verified by using the equation for the period of the spring, $T=2\pi \sqrt{\frac{m}{k}}$, i.e. $\frac{2\pi}{\omega_0}$. Since $\omega_0$ is $2$, $T$ is $\pi$.
+\item (c) We say that the mass comes to rest if, after a certain time, the position of the mass remains within an arbitrary small distance from the equilibrium position. Will the mass ever come to
+rest? Why? \\
+The mass will never come to rest, because there is no dampening. Essentially, this comes down to being unable to take the limit of $y$, since, for any arbitrary end value, increasing the value can yield a different value of $y$.
+\item (d) What is the amplitude of the oscillations for $y$?
+    The amplitude is $0.1$ meters.
+\item (e) What is the maximum velocity (in magnitude) attained by the mass, and when is it attained?  Make sure you give all the t-values at which the velocity is maximum and the corresponding maximum value. The t-values can be determined by magnifying the MATLAB figure using the magnify button, and by using the periodicity of the velocity function.
+    The maximum velocity is $0.2$ meters per second ($0.1995$ in the approximation), and is attained periodically from $\pi - \frac{3}{4}$ ($2.39$ in matlab) with a period of $\pi$.
+\item (f) How does the size of the mass $m$ and the stiffness $k$ of the spring affect the motion?  Support your answer first with a theoretical analysis on how $\omega_0$ - and therefore the period of the oscillation - is related to $m$ and $k$, and then graphically by running LAB05ex1.m first with $m = 5$ and $k = 4$ and then with $m = 1$ and $k = 16$. Include the corresponding graphs.
 
-\part
-
-Approximately, the value of $t = 0$ makes $y$ maximum, based on my graph and data. This is because $y$ starts at sixty when $t$ is $0$, and then decreases from there until $y$ reaches an oscillating section, which is discussed in the next part.
-
-\part
- 
-After an initial period, the equation for $y$ appears to be oscillating between two values, which would make it \emph{stable}. 
-
-\part
-
-When the initial starting location is changed to $(1.5, 5)$, the long-term stability of $y$ is not affected. 
-Despite the fact that the path starts in a new location, it is attracted into the same ``orbit''. 
-This can also be seen in the phase diagram (next pages).
-However, this does affect the local maximum value of $y$, as it begins lower.
-
-\includegraphics{11} \\
-\includegraphics{12}
-
+\end{itemize}
