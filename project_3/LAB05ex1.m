@@ -1,5 +1,5 @@
 function LAB05ex1
-m = 1;
+m = 5;
 % mass [kg]
 k = 4;
 % spring constant [N/m]
